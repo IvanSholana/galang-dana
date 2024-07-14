@@ -62,4 +62,8 @@ class FundraisingController extends Controller
     {
         //
     }
+
+    public function active_fundraising(Request $request){
+        //
+    }
 }
