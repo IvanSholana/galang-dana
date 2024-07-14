@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\FundraiserController;
 use App\Http\Controllers\FundraisingController;
@@ -68,6 +69,15 @@ Route::middleware('auth')->group(function () {
         Route::post('/fundraising/active/{fundraising}',[FundraisingController::class, 'active_fundraising'])
         ->middleware('role:owner')
         ->name('fundraising_withdrawals.active_fundraising');
+
+        Route::post('/fundraiser/apply', [DashboardController::class,'apply_fundraiser'])
+        ->name('fundraiser.apply');
+
+        Route::get('/my-withdrawals',[DashboardController::class,'my_withdrawals'])
+        ->name('my-withdrawals');
+
+        Route::get('/my-withdrawals/details/{fundraisingWithdrawal',[DashboardController::class,'my_withdrawals'])
+        ->name('my-withdrawals.details');
     });
 });
 
