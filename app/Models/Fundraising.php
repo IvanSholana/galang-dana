@@ -43,5 +43,11 @@ class Fundraising extends Model
         return $this->hasMany(FundraisingWithdrawal::class);
     }
 
+    public function scopeForFundraiser($query, $userId)
+    {
+        return $query->whereHas('fundraiser', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
+        });
+    }
 
 }
