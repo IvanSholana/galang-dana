@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Grup route untuk fungsi admin dengan middleware berbasis peran tertentu
-    Route::prefix('admin')->name('admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
         // Route resource untuk mengelola kategori, hanya dapat diakses oleh pengguna dengan peran 'owner'
         Route::resource('categories', CategoryController::class)
         ->middleware('role:owner');
@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
         ->name('fundraisers.index');
 
         // Route resource untuk mengelola penarikan dana penggalangan, dapat diakses oleh pengguna dengan peran 'owner' atau 'fundraiser'
-        Route::resource('fundraising_withdrawals', FundraisingWithdrawalController::class)
+        Route::resource('fundraisings_withdrawals', FundraisingWithdrawalController::class)
         ->middleware('role:owner|fundraiser');
 
         Route::post('/fundraising_withdrawals/request/{fundraising}',[FundraisingWithdrawalController::class,'store'])
