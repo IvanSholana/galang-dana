@@ -10,6 +10,23 @@
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-10 flex flex-col gap-y-5">
+                @if (!$fundraising->is_active) 
+                <span class="text-white font-bold bg-red-500 rounded-2xl w-full p-5">
+                    Fundraising belum disetujui oleh super admin (owner)
+                </span>
+                @role('owner')
+                <form action="{{route('admin.fundraising_withdrawals.active_fundraising',$fundraising)}}" method="POST">
+                    @csrf
+                    <button type="submit" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
+                        Approve
+                    </button>
+                </form>
+                @endrole
+                @else
+                <span class="text-white font-bold bg-green-500 rounded-2xl w-full p-5">
+                    Fundraising telah disetujui oleh super admin (owner)
+                </span>
+                @endif
                 <div class="item-card flex flex-row gap-y-10 justify-between items-center">
                     <div class="flex flex-row items-center gap-x-3">
                         <img src="{{Storage::url($fundraising->thumbnail)}}" alt="" class="rounded-2xl object-cover w-[200px] h-[150px]">
@@ -39,7 +56,7 @@
                 <hr class="my-5">
                 <div class="flex flex-row justify-between items-center">
                     <div>
-                        <h3 class="text-indigo-950 text-xl font-bold">Rp {{$totalDonation}}</h3>
+                        <h3 class="text-indigo-950 text-xl font-bold">Rp {{number_format($totalDonation,0,',','.')}}</h3>
                         <p class="text-slate-500 text-sm">Funded</p>
                     </div>
                     <div class="w-[400px] rounded-full h-2.5 bg-slate-300">

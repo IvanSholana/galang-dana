@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Fundraiser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,7 @@ class FundraiserController extends Controller
     public function edit(Fundraiser $fundraiser)
     {
         //
+        
     }
 
     /**
@@ -89,6 +91,6 @@ class FundraiserController extends Controller
      */
     public function destroy(Fundraiser $fundraiser)
     {
-        //
+        
     }
 }
