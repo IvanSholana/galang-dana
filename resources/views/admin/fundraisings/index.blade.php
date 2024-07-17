@@ -5,7 +5,7 @@
                 {{ __('Manage Fundraisings') }}
             </h2>
             <a href="{{route('admin.fundraisings.create')}}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
-                Edit Fundraising
+                Edit New
             </a>
         </div>
     </x-slot>

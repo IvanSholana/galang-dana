@@ -83,9 +83,10 @@ class FundraisingController extends Controller
     public function show(Fundraising $fundraising)
     {
         //
+        $hasRequestedWithdrawal = $fundraising->withdrawals()->exists();
         $totalDonation = $fundraising->totalReachedAmount();
         $isReached = $totalDonation >= $fundraising->target_amount;
-        return view('admin.fundraisings.show',compact('fundraising','totalDonation','isReached'));
+        return view('admin.fundraisings.show',compact('fundraising','totalDonation','isReached','hasRequestedWithdrawal'));
     }
 
     /**

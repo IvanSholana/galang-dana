@@ -54,6 +54,10 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:fundraiser')
         ->name('fundraising_withdrawals.store');
 
+        Route::get('/fundraising_withdrawals/details/{fundraisingWithdrawal}',[FundraisingWithdrawalController::class,'show'])
+        ->middleware('role:owner')
+        ->name('fundraising_withdrawals.show');
+
         // Route resource untuk mengelola fase penggalangan dana, dapat diakses oleh pengguna dengan peran 'owner' atau 'fundraiser'
         Route::resource('fundraising_phases', FundraisingPhaseController::class)
         ->middleware('role:owner|fundraiser');
@@ -76,7 +80,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/my-withdrawals',[DashboardController::class,'my_withdrawals'])
         ->name('my-withdrawals');
 
-        Route::get('/my-withdrawals/details/{fundraisingWithdrawal',[DashboardController::class,'my_withdrawals'])
+        Route::get('/my-withdrawals/details/{fundraisingWithdrawal}',[DashboardController::class,'my_withdrawals_details'])
         ->name('my-withdrawals.details');
     });
 });

@@ -19,7 +19,8 @@ class Donatur extends Model
         "proof"
     ];
 
-    public function fundraising(){
-        return $this->hasMany(Fundraising::class);
+    public function fundraising()
+    {
+        return $this->belongsTo(Fundraising::class, 'fundraising_id');
     }
 }

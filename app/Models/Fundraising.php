@@ -32,7 +32,7 @@ class Fundraising extends Model
     }
 
     public function donaturs(){
-        return $this->hasMany(Donatur::class)->where('is_paid',true);
+        return $this->hasMany(Donatur::class)->where('is_paid',true);   
     }
 
     public function totalReachedAmount(){

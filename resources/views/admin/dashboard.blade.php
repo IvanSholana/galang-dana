@@ -23,7 +23,7 @@
                         </svg>
                         <div>
                             <p class="text-slate-500 text-sm">Donaturs</p>
-                            <h3 class="text-indigo-950 text-xl font-bold">   {{$donaturs}}</h3>
+                            <h3 class="text-indigo-950 text-xl font-bold">{{$donaturs}}</h3>
                         </div>
                     </div>
                     <div class="flex flex-col gap-y-3">
