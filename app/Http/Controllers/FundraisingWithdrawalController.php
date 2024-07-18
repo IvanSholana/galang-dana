@@ -63,7 +63,7 @@ class FundraisingWithdrawalController extends Controller
         $fundraising->withdrawals()->create($validated);
     });
 
-    return redirect()->route("admin.my-withdrawal", $fundraising);
+    return redirect()->route("admin.my-withdrawals", $fundraising);
 }
 
 
@@ -73,7 +73,7 @@ class FundraisingWithdrawalController extends Controller
     public function show(FundraisingWithdrawal $fundraisingWithdrawal)
     {
         //
-        return view("admin.fundraising_withdrawals.show ", compact("fundraisingWithdrawal"));
+        return view("admin.fundraising_withdrawals.show", compact("fundraisingWithdrawal"));
     }
 
     /**
@@ -90,18 +90,19 @@ class FundraisingWithdrawalController extends Controller
      */
     public function update(UpdateFundraisingWithdrawalRequest $request, FundraisingWithdrawal $fundraisingWithdrawal)
     {
-        //
         $validated = $request->validated();
 
-        if($request->hasFile("proof")){
-            $proofPath = $request->file("proof")->store("proofs","public");
+        if ($request->hasFile('proof')) {
+            $proofPath = $request->file('proof')->store('proofs', 'public');
             $validated['proof'] = $proofPath;
         }
 
         $validated['has_sent'] = 1;
         $fundraisingWithdrawal->update($validated);
 
+        return view('admin.fundraising_withdrawals.show', compact('fundraisingWithdrawal'));
     }
+
 
     /**
      * Remove the specified resource from storage.

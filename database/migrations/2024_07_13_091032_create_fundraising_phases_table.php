@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('fundraising_phases', function (Blueprint $table) {
             $table->id();
-            $table->integer('fundraisings_id');
+            // $table->bigInteger('fundraising_id'); // Change column type to bigInteger
             $table->string('name');
             $table->softDeletes();
             $table->timestamps();
+            $table->string('notes')->nullable(); // Add new column
+
+            // Add foreign key constraint
+            $table->foreignId('fundraising_id')->constrained()->onDelete('cascade');
         });
     }
 

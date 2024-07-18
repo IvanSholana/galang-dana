@@ -16,10 +16,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route untuk dashboard, hanya dapat diakses oleh pengguna yang sudah terverifikasi dan diautentikasi
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// // Route untuk dashboard, hanya dapat diakses oleh pengguna yang sudah terverifikasi dan diautentikasi
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard',[DashboardController::class,'index'])
+        ->name('dashboard');
 
 // Grup route yang membutuhkan autentikasi pengguna
 Route::middleware('auth')->group(function () {
@@ -47,6 +50,10 @@ Route::middleware('auth')->group(function () {
         ->name('fundraisers.index');
 
         // Route resource untuk mengelola penarikan dana penggalangan, dapat diakses oleh pengguna dengan peran 'owner' atau 'fundraiser'
+        
+        Route::resource('fundraising_withdrawals', FundraisingWithdrawalController::class)
+        ->middleware('role:owner|fundraiser');
+
         Route::resource('fundraisings_withdrawals', FundraisingWithdrawalController::class)
         ->middleware('role:owner|fundraiser');
 

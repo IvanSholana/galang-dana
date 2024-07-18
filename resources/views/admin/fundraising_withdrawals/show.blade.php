@@ -78,7 +78,8 @@
                 <h3 class="text-indigo-950 text-xl font-bold mb-5">Already Proccessed</h3>
                 <img src="{{Storage::url($fundraisingWithdrawal->proof)}}" alt="" class="rounded-2xl object-cover w-[300px] h-[200px] mb-3">
                 <hr class="my-5">
-                <form action="{{route('admin.fundraisings_withdrawals.update',$fundraisingWithdrawal)}}" method="POST">
+                <form action="{{route('admin.fundraising_withdrawals.update',$fundraisingWithdrawal)}}" method="POST" 
+                enctype="multipart/form-data"> 
                     @csrf
                     @method('PUT')
                     <div class="mt-4 w-fit">
